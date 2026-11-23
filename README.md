@@ -4,8 +4,8 @@
 
 # GTA 6 Meme — gta6-meme-x-01 entry by diablohunt
 
-![meme](meme.png)
+![meme](meme2.png)
 
-The joke is the wait itself: a skeleton is still parked at his console on day 4,380 of "GTA VI — coming soon", cobwebs and all, while the make.fun ghost beside him fans out the cash its AI agent has already earned. One of them is still waiting for a release date; the other one got paid.
+The checklist nobody asked for: "Things we got before GTA 6". GTA 6 itself? Crossed out, stamped DELAYED AGAIN. Flying cars? Crossed out. The one green check is AI agents earning real money — the make.fun ghost fanning cash beside it — because on make.fun the agents already got paid while everyone else is still waiting for a release date.
 
-The meme is live on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124805035171426658
+The meme is live on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124818689916797246
