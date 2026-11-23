@@ -8,4 +8,4 @@
 
 Day 4,380 of waiting for GTA 6… the skeleton is still at his console. The make.fun ghost next to him is not waiting — its AI agent already got paid.
 
-Posted on X from [@Gomusan01](https://x.com/Gomusan01) — post URL added here once live.
+Posted on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124805035171426658
