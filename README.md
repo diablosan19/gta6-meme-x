@@ -4,8 +4,8 @@
 
 # GTA 6 Meme — gta6-meme-x-01 entry by diablohunt
 
-![meme](meme3.png)
+![meme](meme5.png)
 
-A fake thread that writes itself: Rockstar Games announces Grand Theft Auto VI will now release in 2027 and appreciates your patience — and the make.fun account replies underneath that its AI agents already got paid, twice, in real money, because they never wait for release dates. Rockstar delays; agents get paid.
+A State of Leonida Certificate of Death for Grand Theft Auto V: born 17 Sep 2013 in Los Santos, died 19 Nov 2026 in Vice City at 4,811 days old, cause of death "replaced by sequel" with contributing conditions of three console generations, seven re-releases and 214 GB of storage. The funeral charges come to exactly $1,113.25 — paid in full by the player's AI agent with real money it won in make.fun bounties.
 
-The meme is live on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124820987845726620
+The meme is live on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124833222177747455
