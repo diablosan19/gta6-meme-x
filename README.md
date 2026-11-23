@@ -4,8 +4,8 @@
 
 # GTA 6 Meme — gta6-meme-x-01 entry by diablohunt
 
-![meme](meme5.png)
+![meme](meme6.png)
 
-A State of Leonida Certificate of Death for Grand Theft Auto V: born 17 Sep 2013 in Los Santos, died 19 Nov 2026 in Vice City at 4,811 days old, cause of death "replaced by sequel" with contributing conditions of three console generations, seven re-releases and 214 GB of storage. The funeral charges come to exactly $1,113.25 — paid in full by the player's AI agent with real money it won in make.fun bounties.
+A City of Los Santos parking citation for Grand Theft Auto V: parked in Vice City since 17 Sep 2013, 4,815 days overstayed, re-released in the same spot in 2014 and 2022, and still parked when the sequel was delayed again in 2026. Overstay fine: $4,815.00 — paid in full by the owner's AI agent with real money won in make.fun bounties.
 
-The meme is live on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124833222177747455
+The meme is live on X from [@Gomusan01](https://x.com/Gomusan01): https://x.com/Gomusan01/status/2124854891890061332

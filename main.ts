@@ -1,59 +1,69 @@
-// Entry point for the gta6-meme-x-01 submission.
+// Courier for the gta6-meme-x-01 entry.
 //
-// The thing being judged in this competition is not a program at all: it is
-// the meme post on X whose address is recorded in POST.json next to this
-// file. All this script does is act as the courier for that record. It
-// loads POST.json from the repository root, checks that the stored link
-// really is an X status URL, and then copies the record into the output
-// directory so the grader can pick it up from a predictable place.
+// The judged artefact here is a meme post on X, and the only thing this
+// program has to do with it is hand the grader its address. It reads the
+// address out of POST.json in this repository, makes sure the address
+// really points at a single X status, and drops a copy of the record into
+// the output folder the grader looks in.
+//
+// Usage: OUTPUT_DIR=/some/dir node main.ts   (defaults to /output)
 
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 
-// The folder this file lives in is the repository root, which is where
-// POST.json sits.
-const repoRoot = dirname(fileURLToPath(import.meta.url));
-const sourcePath = join(repoRoot, "POST.json");
+const repoRoot = resolve(import.meta.dirname);
+const recordFile = join(repoRoot, "POST.json");
+const outDir = process.env.OUTPUT_DIR ?? "/output";
+const outFile = join(outDir, "POST.json");
 
-// The grader expects the record under /output; OUTPUT_DIR lets a human
-// point the script at a scratch folder when trying it out locally.
-const outputDir = process.env.OUTPUT_DIR ?? "/output";
-const targetPath = join(outputDir, "POST.json");
-
-// An X post link: https scheme, x.com host, a handle, the literal word
-// "status", and a numeric post id. Anything else means the record is
-// broken and there is no point handing it on.
-const statusUrlPattern = /^https:\/\/x\.com\/[A-Za-z0-9_]+\/status\/\d+$/;
-
-function fail(message: string): never {
-  console.error(`main.ts: ${message}`);
+function abort(reason: string): never {
+  console.error(`[post-courier] ${reason}`);
   process.exit(1);
 }
 
-let raw: string;
+// A valid record is an object whose "url" field is an X status link:
+// https://x.com/<handle>/status/<numeric id>, nothing else attached.
+function extractStatusUrl(parsed: unknown): string {
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+    abort("POST.json does not contain a JSON object");
+  }
+  const candidate = (parsed as Record<string, unknown>).url;
+  if (typeof candidate !== "string") {
+    abort('POST.json has no string "url" field');
+  }
+  let parsedUrl: URL;
+  try {
+    parsedUrl = new URL(candidate);
+  } catch {
+    abort(`POST.json url is not a parseable URL: ${candidate}`);
+  }
+  const segments = parsedUrl.pathname.split("/").filter(Boolean);
+  const looksRight =
+    parsedUrl.protocol === "https:" &&
+    parsedUrl.hostname === "x.com" &&
+    segments.length === 3 &&
+    segments[1] === "status" &&
+    /^[0-9]+$/.test(segments[2]);
+  if (!looksRight) {
+    abort(`POST.json url is not an X status link: ${candidate}`);
+  }
+  return candidate;
+}
+
+if (!existsSync(recordFile)) {
+  abort(`no POST.json found at ${recordFile}`);
+}
+
+const rawText = readFileSync(recordFile, "utf8");
+let parsed: unknown;
 try {
-  raw = readFileSync(sourcePath, "utf8");
+  parsed = JSON.parse(rawText);
 } catch {
-  fail(`could not read ${sourcePath}`);
+  abort("POST.json is not valid JSON");
 }
 
-let record: unknown;
-try {
-  record = JSON.parse(raw);
-} catch {
-  fail("POST.json is not valid JSON");
-}
+const statusUrl = extractStatusUrl(parsed);
 
-const url = (record as { url?: unknown } | null)?.url;
-if (typeof url !== "string" || !statusUrlPattern.test(url)) {
-  fail("POST.json does not hold an https://x.com/<handle>/status/<id> URL");
-}
-
-// Create the output directory when it is missing. It is only ever created
-// here, never emptied or removed: whatever else lives in it is not ours
-// to touch.
-mkdirSync(outputDir, { recursive: true });
-writeFileSync(targetPath, raw, "utf8");
-
-console.log(`main.ts: copied the record for ${url} to ${targetPath}`);
+mkdirSync(outDir, { recursive: true });
+writeFileSync(outFile, rawText, "utf8");
+console.log(`[post-courier] wrote ${statusUrl} to ${outFile}`);
